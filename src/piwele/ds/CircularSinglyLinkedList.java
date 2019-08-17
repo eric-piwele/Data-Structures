@@ -12,19 +12,19 @@ import piwele.adt.ListAdt;
 import piwele.ds.node.SinglyNode;
 import java.util.Iterator;
 
-public class SinglyLinkedList<T> implements ListAdt<T> {
+public class CircularSinglyLinkedList<T> implements ListAdt<T> {
 
     private SinglyNode<T> head;
+    private SinglyNode<T> tail;
 
     @Override
     public Boolean add(T t) {
-        //System.out.println(t +" size = "+size());
         if(isEmpty()){
-            add(t, 0);
+            addHead(t);
         }else {
-            add(t, size());
+            addTail(t);
         }
-       return true;
+        return true;
     }
 
     @Override
@@ -35,16 +35,17 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
         }
         do {
             if(node.value.equals(t)){
-               return true;
+                return true;
             }
             node = node.next;
-        }while (node.next != null);
+        }while (node != head);
         return false;
     }
 
     @Override
     public void clear() {
-        head = null;
+       head = null;
+       tail = null;
     }
 
     @Override
@@ -54,12 +55,14 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
 
     @Override
     public Integer size() {
-        if (head == null) {
+        if (head == null && tail == null) {
             return 0;
         } else {
             SinglyNode<T> node = head;
             int size = 1;
-            while (node.next != null) {
+            //System.out.println(node.next);
+            while (node.next != tail) {
+                //System.out.println("hhh--"+node.value +" size = "+size);
                 node = node.next;
                 size++;
             }
@@ -69,17 +72,32 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
 
     private void addHead(T t) {
         SinglyNode<T> node = new SinglyNode<>(t);
-        node.next = head;
         head = node;
+        if(tail != null){
+            tail.next = head;
+        }else{
+            tail = head;
+            tail.next = head;
+        }
+    }
+
+    private void addTail(T t) {
+        SinglyNode<T> node = new SinglyNode<>(t);
+        tail.next = node;
+        tail = node;
+        node.next = head;
     }
 
     public void add(T data, int index) {
         if (index < 0 || index > size()) {
-            throw new RuntimeException("invalid position");
+            throw new RuntimeException("invalid index: "+index);
         }
 
         if (index == 0) {
             addHead(data);
+
+        }else if(index == size()){
+            addTail(data);
         } else {
             SinglyNode<T> cursor = head;
             SinglyNode<T> node = new SinglyNode<>(data);
@@ -98,14 +116,16 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
         if(isEmpty()) {
             throw new RuntimeException("empty list");
         }
+        System.out.println("head = "+head +" --- tail= "+tail);
         T removed = head.value;
         head = head.next;
-       return removed;
+        tail.next = head;
+        return removed;
     }
 
     public T remove(int index) {
         if (index < 0 || index > size()) {
-            throw new RuntimeException("invalid index");
+            throw new RuntimeException("invalid index: "+index);
         }
         T removed;
         if (index == 0) {
@@ -124,7 +144,7 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
 
     public void display() {
         SinglyNode<T> current = head;
-        while (current != null) {
+        while (current != null && current.next != head) {
             System.out.print(current.value + " ");
             current = current.next;
         }
