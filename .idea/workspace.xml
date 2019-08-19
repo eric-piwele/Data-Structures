@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8092c5e3-266a-4317-bf4d-d8ac72c85429" name="Default Changelist" comment="more linked list impl">
-      <change afterPath="$PROJECT_DIR$/src/piwele/adt/node/DoublyNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/piwele/ds/CircularDoublyLinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/piwele/ds/DoublyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Data-Structures/piwele/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/CircularSinglyLinkedList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/CircularSinglyLinkedList$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/CircularSinglyLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/CircularSinglyLinkedList.class" afterDir="false" />
@@ -13,11 +9,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/SinglyLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/SinglyLinkedList.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/node/SinglyNode.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Data-Structures/piwele/ds/read-me" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piwele/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piwele/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piwele/ds/CircularSinglyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piwele/ds/CircularSinglyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piwele/ds/SinglyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piwele/ds/SinglyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piwele/ds/node/SinglyNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/piwele/adt/node/SinglyNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/piwele/ds/read-me" beforeDir="false" afterPath="$PROJECT_DIR$/src/piwele/adt/read-me" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -238,27 +229,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1566032840615</updated>
-      <workItem from="1566032842086" duration="21889000" />
+      <workItem from="1566032842086" duration="22094000" />
     </task>
+    <task id="LOCAL-00001" summary="more linked list impl">
+      <created>1566196936235</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566196936235</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21889000" />
+    <option name="totallyTimeSpent" value="22094000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="32" width="1231" height="660" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" />
       <window_info id="Image Layers" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Capture Tool" />
       <window_info id="UI Designer" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24978974" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24978974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32922536" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.32922536" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
