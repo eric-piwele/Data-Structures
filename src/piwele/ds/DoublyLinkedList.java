@@ -9,12 +9,15 @@ package piwele.ds;
 
 
 import piwele.adt.ListAdt;
-import piwele.adt.node.SinglyNode;
+import piwele.adt.node.DoublyNode;
+
 import java.util.Iterator;
 
-public class SinglyLinkedList<T> implements ListAdt<T> {
+public class DoublyLinkedList<T> implements ListAdt<T> {
 
-    private SinglyNode<T> head;
+    private DoublyNode<T> head;
+    private DoublyNode<T> tail;
+    private int size = 0;
 
     @Override
     public Boolean add(T t) {
@@ -22,14 +25,56 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
         if(isEmpty()){
             add(t, 0);
         }else {
-            add(t, size());
+            add(t, size);
         }
        return true;
     }
 
+    private void addHead(T t) {
+        DoublyNode<T> node = new DoublyNode<>(t);
+        node.next = head;
+        if(head != null) {
+            head.previous = node;
+        }
+        if(tail == null){
+            tail = node;
+        }
+        head = node;
+    }
+
+    private void addTail(T t) {
+        DoublyNode<T> node = new DoublyNode<>(t);
+        node.previous = tail;
+        tail.next = node;
+        tail = node;
+    }
+
+    public void add(T data, int index) {
+        if (index < 0 || index > size) {
+            throw new RuntimeException("invalid position");
+        }
+
+        if (index == 0) {
+            addHead(data);
+        }else if(index == size){
+            addTail(data);
+        } else {
+            DoublyNode<T> cursor = head;
+            DoublyNode<T> node = new DoublyNode<>(data);
+            for (int i = 1; i <= index; ++i) {
+                cursor = cursor.next;
+            }
+            node.previous = cursor.previous;
+            node.next = cursor;
+            cursor.previous = node;
+        }
+        size++;
+    }
+
+
     @Override
     public Boolean contains(T t) {
-        SinglyNode<T> node = head;
+        DoublyNode<T> node = head;
         if(isEmpty()){
             return false;
         }
@@ -45,54 +90,20 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
     @Override
     public void clear() {
         head = null;
+        tail = null;
+        size = 0;
     }
 
     @Override
     public Boolean isEmpty() {
-        return size() == 0;
+        return size == 0;
     }
 
     @Override
     public Integer size() {
-        if (head == null) {
-            return 0;
-        } else {
-            SinglyNode<T> node = head;
-            int size = 1;
-            while (node.next != null) {
-                node = node.next;
-                size++;
-            }
-            return size;
-        }
+        return size;
     }
 
-    private void addHead(T t) {
-        SinglyNode<T> node = new SinglyNode<>(t);
-        node.next = head;
-        head = node;
-    }
-
-    public void add(T data, int index) {
-        if (index < 0 || index > size()) {
-            throw new RuntimeException("invalid position");
-        }
-
-        if (index == 0) {
-            addHead(data);
-        } else {
-            SinglyNode<T> cursor = head;
-            SinglyNode<T> node = new SinglyNode<>(data);
-            for (int i = 1; i <= index; ++i) {
-                if(cursor.next == null){
-                    break;
-                }
-                cursor = cursor.next;
-            }
-            node.next = cursor.next;
-            cursor.next = node;
-        }
-    }
 
     private T removeHead(){
         if(isEmpty()) {
@@ -100,6 +111,7 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
         }
         T removed = head.value;
         head = head.next;
+        head.previous = null;
        return removed;
     }
 
@@ -111,19 +123,24 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
         if (index == 0) {
             removed = removeHead();
         } else{
-            SinglyNode<T> cursor = head;
+            DoublyNode<T> cursor = head;
             for (int i = 1; i < index; ++i) {
                 cursor = cursor.next;
             }
             // cursor now is node at index - 1
-            removed = cursor.next.value;
-            cursor.next = cursor.next.next;
+            DoublyNode<T> targetNode = cursor.next;
+            removed = targetNode.value;
+            System.out.println("target = "+targetNode.value+" -- cursor = "+cursor.value);
+            cursor.next = targetNode.next;
+            targetNode.next.previous = cursor;
+
         }
+        size--;
         return removed;
     }
 
     public void display() {
-        SinglyNode<T> current = head;
+        DoublyNode<T> current = head;
         while (current != null) {
             System.out.print(current.value + " ");
             current = current.next;
@@ -134,7 +151,7 @@ public class SinglyLinkedList<T> implements ListAdt<T> {
 
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            SinglyNode<T> cursor = head;
+            DoublyNode<T> cursor = head;
             @Override
             public boolean hasNext() {
                 return cursor != null;

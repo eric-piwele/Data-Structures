@@ -1,4 +1,4 @@
-package piwele.ds.node;
+package piwele.adt.node;
 
 
 public class SinglyNode<T> {

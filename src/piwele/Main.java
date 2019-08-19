@@ -1,33 +1,38 @@
 package piwele;
 
+import piwele.ds.CircularDoublyLinkedList;
 import piwele.ds.SinglyLinkedList;
 import piwele.ds.CircularSinglyLinkedList;
+import piwele.ds.DoublyLinkedList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        SinglyLinkedList<String> mySinglyList = new SinglyLinkedList<String>();
-        //CircularSinglyLinkedList<String> mySinglyList = new CircularSinglyLinkedList<String>();
-        mySinglyList.add("a");
-        mySinglyList.add("b");
-        mySinglyList.add("c");
-        mySinglyList.add("d");
-        mySinglyList.add("e");
-        mySinglyList.add("f");
-        mySinglyList.display();
-        System.out.println("size1= "+mySinglyList.size());
-        mySinglyList.remove(2);
-        mySinglyList.display();
-        System.out.println("contains c = "+mySinglyList.contains("c"));
-        mySinglyList.remove(2);
-        System.out.println("contains c = "+mySinglyList.contains("c"));
-        mySinglyList.display();
-        System.out.println("size2= "+mySinglyList.size());
-        mySinglyList.clear();
-        System.out.println("size3= "+mySinglyList.size());
-        mySinglyList.add("the end");
-        mySinglyList.display();
+        //SinglyLinkedList<String> myList = new SinglyLinkedList<String>();
+        //CircularSinglyLinkedList<String> myList = new CircularSinglyLinkedList<String>();
+        //DoublyLinkedList<String> myList = new DoublyLinkedList<String>();
+        CircularDoublyLinkedList<String> myList = new CircularDoublyLinkedList<>();
+        myList.add("a");
+        myList.add("b");
+        myList.add("c");
+        myList.add("d");
+        myList.add("e");
+        myList.add("f");
+        myList.display();
+        System.out.println("size1= "+myList.size());
+        System.out.println("contains c = "+myList.contains("c"));
+        System.out.println("removed = "+myList.remove(2));
+        System.out.println("contains c = "+myList.contains("c"));
+        myList.display();
+        System.out.println("size2= "+myList.size());
+        myList.add("C",2);
+        myList.display();
+        System.out.println("size3= "+myList.size());
+        myList.clear();
+        System.out.println("size4= "+myList.size());
+        myList.add("the end");
+        myList.display();
     }
 
 }
